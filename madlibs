@@ -18,8 +18,8 @@ header
 
 #echo "the $1 fox $2 over the $3 dog."
 
-
+pattern="\[Adjective]"
 
 while read line; do
-	echo $line | sed 's/\[Adjective]/'$1'/'
+	echo $line | sed 's/'$pattern'/'$1'/'
 done < "./stories/test.txt"
