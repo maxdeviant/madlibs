@@ -1,5 +1,9 @@
-The [Adjective]
+The [Adjective] [Adjective]
 fox
 jumped over
 the
-lazy dog
+[Adjective] dog.
+
+The [Noun] was growing [Adverb].
+
+End file.
