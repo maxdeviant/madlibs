@@ -22,11 +22,13 @@ pattern="\[Adjective]"
 
 count=0
 while read line; do
-	# Check if line contains the desired regex pattern
-	if [[ $line =~ $pattern ]]
-		then
-			count=$[$count + 1]
-			eval lib=\${$count}
-	fi
-	echo $line | sed 's/'$pattern'/'$lib'/'
+	for l in $line; do
+		# Check if word contains the desired regex pattern
+		if [[ $l =~ $pattern ]]
+			then
+				count=$[$count + 1]
+				eval lib=\${$count}
+		fi
+		printf "%s" $l | sed 's/'$pattern'/'$lib'/'
+	done
 done < "./stories/test.txt"
