@@ -29,6 +29,8 @@ while read line; do
 				count=$[$count + 1]
 				eval lib=\${$count}
 		fi
-		printf "%s" $l | sed 's/'$pattern'/'$lib'/'
+		# echo eval "$l | sed 's/$pattern/$lib/'"
+		eval "echo $l | sed 's/$pattern/$lib/'"
+		# printf "%s" $l | sed 's/'$pattern'/'$lib'/'
 	done
 done < "./stories/test.txt"
