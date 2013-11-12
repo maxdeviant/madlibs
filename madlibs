@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Clear the terminal window
+clear
+
+# Output ASCII art header
+function header {
+	echo "___  ___          _ _     _ _         "
+	echo "|  \/  |         | | |   (_) |        "
+	echo "| .  . | __ _  __| | |    _| |__  ___ "
+	echo "| |\/| |/ _\` |/ _\` | |   | | '_ \/ __|"
+	echo "| |  | | (_| | (_| | |___| | |_) \__ \\"
+	echo "\_|  |_/\__,_|\__,_\_____/_|_.__/|___/"
+	echo "                                      "
+}
+
+header
+
+echo "the $1 fox $2 over the $3 dog."
