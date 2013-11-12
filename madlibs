@@ -16,4 +16,10 @@ function header {
 
 header
 
-echo "the $1 fox $2 over the $3 dog."
+#echo "the $1 fox $2 over the $3 dog."
+
+
+
+while read line; do
+	echo $line | sed 's/\[Adjective]/'$1'/'
+done < "./stories/test.txt"
