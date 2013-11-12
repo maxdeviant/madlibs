@@ -18,7 +18,7 @@ header
 
 #echo "the $1 fox $2 over the $3 dog."
 
-pattern="\[Adjective]"
+pattern="\[Adjective]|\[Noun]|\[Adverb]"
 
 count=0
 while read line; do
@@ -30,7 +30,13 @@ while read line; do
 				eval lib=\${$count}
 		fi
 		# echo eval "$l | sed 's/$pattern/$lib/'"
-		eval "echo $l | sed 's/$pattern/$lib/'"
-		# printf "%s" $l | sed 's/'$pattern'/'$lib'/'
+		# eval "echo $l | sed 's/$pattern/$lib/'"
+		# foo= $(eval "$l | sed 's/$pattern/$lib/'")
+		# echo $foo
+
+		# eval foo=\$"l | sed s/$pattern/$lib/"
+		# echo $foo
+
+		printf "%s" $l | sed -E 's/'$pattern'/'$lib'/'
 	done
 done < "./stories/test.txt"
