@@ -18,7 +18,7 @@ header
 
 #echo "the $1 fox $2 over the $3 dog."
 
-pattern="\[Adjective]|\[Noun]|\[Adverb]|\[Exclamation]"
+pattern="\[Adjective]|\[Noun]|\[Adverb]|\[Exclamation]|\[Proper\sNoun]"
 
 count=0
 while read line; do
