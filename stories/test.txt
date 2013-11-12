@@ -6,4 +6,4 @@ the
 
 The [Noun] was growing [Adverb].
 
-End file.
+"[Exclamation]!" [Proper Noun] screamed.
