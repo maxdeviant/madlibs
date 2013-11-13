@@ -14,7 +14,16 @@ function header {
 	echo "                                      "
 }
 
+function usage {
+	echo "usage: $0 [file] [args]"
+	echo "	file	filename for the story (minus the extension)"
+	echo "	args	madlib substitutions"
+	exit 1
+}
+
 header
+
+[[ $# -eq 0 ]] && usage
 
 pattern="\[Adjective]|\[Noun]|\[Adverb]|\[Exclamation]|\[Proper_Noun]|\[Plural_Noun]|\[Verb]|\[Place]|\[Number]|\[Body_Part]"
 story="./stories/"$1".txt"
