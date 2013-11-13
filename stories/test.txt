@@ -6,4 +6,4 @@ the
 
 The [Noun] was growing [Adverb].
 
-"[Exclamation]!" [Proper Noun] screamed.
+"[Exclamation]!" [Proper_Noun] screamed.
