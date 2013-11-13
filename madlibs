@@ -35,23 +35,28 @@ p_misc="\[Place]|\[Number]|\[Body_Part]|\[Exclamation]"
 pattern="$p_basic|$p_proper|$p_plural|$p_misc"
 story="./stories/"$1".txt"
 
+# ESC_SEQ="\x1b["
+# COL_RESET=$ESC_SEQ"39;49;00m"
+# COL_RED=$ESC_SEQ"31;01m"
+
 count=1
 while read line; do
 	output=()
 
-	for l in $line; do
+	for word in $line; do
 		# Check if word contains the desired regex pattern
-		if [[ $l =~ $pattern ]]
+		if [[ $word =~ $pattern ]]
 			then
 				count=$[$count + 1]
 				eval lib=\${$count}
 		fi
 
-		if [ ! -z $lib ]
+		# If $lib is not undefined
+		if [[ ! -z $lib ]]
 			then
-				output+=$(printf "%s " $l | sed -E 's/'$pattern'/'$lib'/')
+				output+=$(printf "%s " $word | sed -E 's/'$pattern'/'$lib'/')
 			else
-				output+=$(printf "%s " $l)
+				output+=$(printf "%s " $word)
 		fi
 	done
 
