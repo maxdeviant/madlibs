@@ -25,7 +25,12 @@ header
 
 [[ $# -eq 0 ]] && usage
 
-pattern="\[Adjective]|\[Noun]|\[Adverb]|\[Exclamation]|\[Proper_Noun]|\[Plural_Noun]|\[Verb]|\[Place]|\[Number]|\[Body_Part]"
+p_basic="\[Noun]|\[Verb]|\[Pronoun]|\[Adjective]|\[Adverb]"
+p_proper="\[Proper_Noun]"
+p_plural="\[Plural_Noun]"
+p_misc="\[Place]|\[Number]|\[Body_Part]"
+
+pattern="$p_basic|$p_proper|$p_plural|$p_misc"
 story="./stories/"$1".txt"
 
 count=1
