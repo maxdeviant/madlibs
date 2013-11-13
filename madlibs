@@ -16,9 +16,10 @@ function header {
 
 header
 
-pattern="\[Adjective]|\[Noun]|\[Adverb]|\[Exclamation]|\[Proper_Noun]"
+pattern="\[Adjective]|\[Noun]|\[Adverb]|\[Exclamation]|\[Proper_Noun]|\[Plural_Noun]|\[Verb]|\[Place]|\[Number]|\[Body_Part]"
+story="./stories/"$1".txt"
 
-count=0
+count=1
 while read line; do
 	output=()
 
@@ -30,8 +31,13 @@ while read line; do
 				eval lib=\${$count}
 		fi
 
-		output+=$(printf "%s " $l | sed -E 's/'$pattern'/'$lib'/')
+		if [ ! -z $lib ]
+			then
+				output+=$(printf "%s " $l | sed -E 's/'$pattern'/'$lib'/')
+			else
+				output+=$(printf "%s " $l)
+		fi
 	done
 
 	echo $output
-done < "./stories/test.txt"
+done < $story
