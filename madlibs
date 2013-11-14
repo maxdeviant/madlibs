@@ -30,7 +30,7 @@ header
 p_basic="\[Noun]|\[Verb]|\[Pronoun]|\[Adjective]|\[Adverb]"
 p_proper="\[Proper_Noun]"
 p_plural="\[Plural_Noun]"
-p_misc="\[Place]|\[Number]|\[Body_Part]|\[Exclamation]"
+p_misc="\[Place]|\[Number]|\[Exclamation]|\[Body_Part]|\[Clothing]"
 
 pattern="$p_basic|$p_proper|$p_plural|$p_misc"
 story="./stories/"$1".txt"

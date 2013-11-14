@@ -1,0 +1,12 @@
+Ingredients:
+
+[Number] tablespoons [Adjective] [Noun]
+[Number] teaspoons [Noun]
+[Number] cups [Adjective] [Noun]
+[Number] tablespoons [Noun]
+
+Combine all ingredients in a bowl. Mix [Adverb] with a spoon until [Adjective]. Place on front lawn or other cold location. Bake at -[Number] degrees for [Number] minutes until snow is [Adjective] and [Adjective]. Test with stick or carrot to make sure it is ready.
+
+When done, decorate with a [Clothing] and a [Clothing]. Use a [Noun] for a mouth and [Noun] for eyes.
+
+Serves everyone!
