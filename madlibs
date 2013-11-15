@@ -23,16 +23,25 @@ function usage {
 	exit 1
 }
 
+function create_pattern {
+	pattern=()
+	while read line; do
+		# Check if the line is empty or a comment (starts with '#')
+		if [[ ! -z $line && "${line:0:1}" != '#' ]]
+			then
+				pattern+="\["${line// /_}"]|"
+		fi
+	done < "patterns"
+	# Remove the trailing OR operator
+	pattern=`echo $pattern | rev | cut -c 2- | rev`
+}
+
 header
 
 [[ $# -eq 0 ]] && usage
 
-p_basic="\[Noun]|\[Verb]|\[Pronoun]|\[Adjective]|\[Adverb]"
-p_proper="\[Proper_Noun]"
-p_plural="\[Plural_Noun]"
-p_misc="\[Place]|\[Number]|\[Exclamation]|\[Body_Part]|\[Clothing]"
+create_pattern
 
-pattern="$p_basic|$p_proper|$p_plural|$p_misc"
 story="./stories/"$1".txt"
 
 # Colors
