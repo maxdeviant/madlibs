@@ -70,7 +70,7 @@ while read line; do
 		fi
 	done
 
-	echo "${output//_/ }"
+	echo "${output//_/ }" | fold -sw 120
 done < $story
 
 echo -e "\r"
