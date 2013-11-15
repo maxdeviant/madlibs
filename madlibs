@@ -35,6 +35,7 @@ p_misc="\[Place]|\[Number]|\[Exclamation]|\[Body_Part]|\[Clothing]"
 pattern="$p_basic|$p_proper|$p_plural|$p_misc"
 story="./stories/"$1".txt"
 
+# Colors
 ESC_SEQ="\x1b["
 COL_RESET=$ESC_SEQ"39;49;00m"
 COL_RED=$ESC_SEQ"31;01m"
@@ -60,7 +61,7 @@ while read line; do
 		fi
 	done
 
-	echo $output
+	echo "${output//_/ }"
 done < $story
 
 echo -e "\r"
