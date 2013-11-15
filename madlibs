@@ -42,7 +42,6 @@ COL_RED=$ESC_SEQ"31;01m"
 count=1
 while read line; do
 	output=()
-
 	for word in $line; do
 		# Check if word contains the desired regex pattern
 		if [[ $word =~ $pattern ]]
@@ -57,7 +56,7 @@ while read line; do
 				output+=$(printf "$COL_RED%s$COL_RESET " $word | sed -E 's/'$pattern'/'$lib'/')
 				lib=""
 			else
-				output+=$(printf "%s " $word)
+				output+=$(printf "%s " ${word//_/ })
 		fi
 	done
 
