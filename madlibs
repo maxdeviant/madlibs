@@ -5,35 +5,35 @@ clear
 
 # Output ASCII art header
 function header {
-	echo "___  ___          _ _     _ _         "
-	echo "|  \/  |         | | |   (_) |        "
-	echo "| .  . | __ _  __| | |    _| |__  ___ "
-	echo "| |\/| |/ _\` |/ _\` | |   | | '_ \/ __|"
-	echo "| |  | | (_| | (_| | |___| | |_) \__ \\"
-	echo "\_|  |_/\__,_|\__,_\_____/_|_.__/|___/"
-	echo "                                      "
+    echo "___  ___          _ _     _ _         "
+    echo "|  \/  |         | | |   (_) |        "
+    echo "| .  . | __ _  __| | |    _| |__  ___ "
+    echo "| |\/| |/ _\` |/ _\` | |   | | '_ \/ __|"
+    echo "| |  | | (_| | (_| | |___| | |_) \__ \\"
+    echo "\_|  |_/\__,_|\__,_\_____/_|_.__/|___/"
+    echo "                                      "
 }
 
 # Outputs usage instructions
 function usage {
-	echo "usage: $0 [file] [args]"
-	echo "	file	filename for the story (minus the extension)"
-	echo "	args	madlib substitutions"
-	echo -e "\r"
-	exit 1
+    echo "usage: $0 [file] [args]"
+    echo "  file    filename for the story (minus the extension)"
+    echo "  args    madlib substitutions"
+    echo -e "\r"
+    exit 1
 }
 
 function create_pattern {
-	pattern=()
-	while read line; do
-		# Check if the line is empty or a comment (starts with '#')
-		if [[ ! -z $line && "${line:0:1}" != '#' ]]
-			then
-				pattern+="\["${line// /_}"]|"
-		fi
-	done < "patterns"
-	# Remove the trailing OR operator
-	pattern=`echo $pattern | rev | cut -c 2- | rev`
+    pattern=()
+    while read line; do
+        # Check if the line is empty or a comment (starts with '#')
+        if [[ ! -z $line && "${line:0:1}" != '#' ]]
+            then
+                pattern+="\["${line// /_}"]|"
+        fi
+    done < "patterns"
+    # Remove the trailing OR operator
+    pattern=`echo $pattern | rev | cut -c 2- | rev`
 }
 
 header
@@ -51,26 +51,26 @@ COL_RED=$ESC_SEQ"31;01m"
 
 count=1
 while read line; do
-	output=()
-	for word in $line; do
-		# Check if word contains the desired regex pattern
-		if [[ $word =~ $pattern ]]
-			then
-				count=$[$count + 1]
-				eval lib=\${$count}
-		fi
+    output=()
+    for word in $line; do
+        # Check if word contains the desired regex pattern
+        if [[ $word =~ $pattern ]]
+            then
+                count=$[$count + 1]
+                eval lib=\${$count}
+        fi
 
-		# If $lib is not undefined
-		if [[ ! -z $lib ]]
-			then
-				output+=$(printf "$COL_RED%s$COL_RESET " $word | sed -E 's/'$pattern'/'$lib'/')
-				lib=""
-			else
-				output+=$(printf "%s " ${word//_/ })
-		fi
-	done
+        # If $lib is not undefined
+        if [[ ! -z $lib ]]
+            then
+                output+=$(printf "$COL_RED%s$COL_RESET " $word | sed -E 's/'$pattern'/'$lib'/')
+                lib=""
+            else
+                output+=$(printf "%s " ${word//_/ })
+        fi
+    done
 
-	echo "${output//_/ }" | fold -sw 120
+    echo "${output//_/ }" | fold -sw 120
 done < $story
 
 echo -e "\r"
